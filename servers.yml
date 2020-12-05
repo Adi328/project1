@@ -1,0 +1,20 @@
+---
+- name:
+  hosts: all
+  vars:
+    PACKAGES:
+      - httpd
+      - epel-release
+      - nfs-utils
+  tasks:
+    - name: installing packages
+      yum:
+        name: "{{ item }}"
+        state: installed
+      loop: "{{ PACKAGES }}"
+
+  tasks:
+    - name: ADDING USERS
+      user:
+        name: robert
+        shell: /bin/bash
